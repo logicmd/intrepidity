@@ -906,13 +906,13 @@ function getImage($num) {
 	$more = 0;
 }
 
-function tbf1_comment($comment, $args, $depth) {
+/*function tbf1_comment($comment, $args, $depth) {
    $GLOBALS['comment'] = $comment; ?>
    <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
         <div id="comment-<?php comment_ID(); ?>">
             <div class="comment-avatar">
             <div class="pic"><?php echo get_avatar($comment,$size='36',$default='' ); ?></div>
-            <span class="name"><?php printf(__('<cite class="fn">%s</cite>'), get_comment_author_link()) ?> says:</span>
+            <span class="name"><?php printf(__('<cite class="fn">%s</cite>'), get_comment_author_link()) ?> <p>评论:</p></span>
         </div>
 
 		<?php if ($comment->comment_approved == '0') : ?>
@@ -924,10 +924,42 @@ function tbf1_comment($comment, $args, $depth) {
 			<?php printf(__('%1$s at %2$s'), get_comment_date(),get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','') ?>
             <div class="comment-text">
 				<?php if($args['max_depth']!=$depth) { ?>
+                    
+                <?php } ?>
+                <?php comment_text() ?>
+            </div>
+            <?php if(get_option('thread_comments')) :?>	
+                    	<span class="reply"><?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?></span>
+            <?php endif; ?>
+        </div>
+        <div class="recover"></div>
+     </div>
+<?php
+}
+*/
+function tbf1_comment($comment, $args, $depth) {
+   $GLOBALS['comment'] = $comment; ?>
+   <li <?php comment_class(); ?> id="li-comment-<?php comment_ID() ?>">
+        <div id="comment-<?php comment_ID(); ?>">
+            <div class="comment-avatar">
+            <div class="pic"><?php echo get_avatar($comment,$size='48',$default='' ); ?></div>
+            <span class="name"><?php printf(__('<cite class="fn">%s</cite>'), get_comment_author_link()) ?> <p>评论：</p></span>
+        </div>
+
+		<?php if ($comment->comment_approved == '0') : ?>
+         <em><?php _e('Your comment is awaiting moderation.') ?></em>
+         <br />
+        <?php endif; ?>
+        
+        <div class="comment-meta commentmetadata <?php add_comment_class(); ?>"><a class="comment-time-meta" href="<?php echo htmlspecialchars(get_comment_link( $comment->comment_ID )) ?>">
+			<?php printf(__('%1$s at %2$s'), get_comment_date(),get_comment_time()) ?></a><?php edit_comment_link(__('(Edit)'),'  ','') ?>
+            <div class="comment-text">
+				<?php if($args['max_depth']!=$depth) { ?>
                     <?php if(get_option('thread_comments')) :?>	
                     	<span class="reply"><?php comment_reply_link(array_merge($args, array('depth' => $depth, 'max_depth' => $args['max_depth']))) ?></span>
                     <?php endif; ?>
                 <?php } ?>
+                <?php if(function_exists('useragent_output_custom')) { useragent_output_custom(); } ?><br />
                 <?php comment_text() ?>
             </div>
         </div>
@@ -944,4 +976,53 @@ function resize_youtube( $content ) {
 	return str_replace('width="640" height="505"></embed>', 'width="500" height="395"></embed>', $content);
 }
 add_filter('the_content', 'resize_youtube', 999);
+?>
+<?php
+/**
+ * Generates semantic classes for each comment element in id attrib
+ *
+ * @since 2.7.0 mod by logicmd
+ *
+ * @param string|array $class One or more classes to add to the class list
+ * @param int $comment_id An optional comment ID
+ * @param int $post_id An optional post ID
+ * @param bool $echo Whether comment_class should echo or return
+ */
+function add_comment_class( $class = '', $comment_id = null, $post_id = null, $echo = true ) {
+	// Separates classes with a single space, collates classes for comment DIV
+	$class = join( ' ', get_comment_class( $class, $comment_id, $post_id ) ) ;
+	if ( $echo)
+		echo $class;
+	else
+		return $class;
+}
+?>
+<?php
+/* Get visitors IP */
+function getIp() {
+    $ip = $_SERVER['REMOTE_ADDR'];
+ 
+    if (!empty($_SERVER['HTTP_CLIENT_IP'])) {
+        $ip = $_SERVER['HTTP_CLIENT_IP'];
+    } elseif (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+        $ip = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    }
+ 
+    return $ip;
+}
+
+/*// /wp-content/plugins/custom-smilies-se/for29.php line 257
+add_filter('smilies_src','custom_smilies_src',1,10);
+function custom_smilies_src ($img_src, $img, $siteurl){
+    return get_bloginfo('template_directory').'/images/smilies/'.$img;
+}*/
+
+/**
+ * It is a custom hook in comment_form for the wordaround of wp-recapcha
+ *
+ * @by logicmd
+ */
+ function recapcha_hook() {
+    do_action('recapcha_hook');
+ } 
 ?>

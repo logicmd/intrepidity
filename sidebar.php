@@ -1,4 +1,4 @@
-		<!-- begin sidebar -->
+<!-- begin sidebar -->
 		<div id="sidebar">
         	<?php if(get_option('tbf1_optin_form') != 'no') : ?>
               <div id="optinbox">

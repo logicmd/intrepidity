@@ -44,8 +44,7 @@ get_header();
 	<?php endif; ?>
     
     <div class="navigation">
-        <p class="alignleft"><?php previous_posts_link('Latest posts'); ?></p>
-        <p class="alignright"><?php next_posts_link('Older posts'); ?></p>
+        <?php wp_pagenavi(); ?>
     </div>
 
 <?php get_footer(); ?>

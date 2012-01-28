@@ -4,7 +4,8 @@
 		<div class="post" id="post-<?php the_ID(); ?>">
 			<p class="entry-date"><?php the_time('M y') ?><br /><span class="date"><?php the_time('j')?></span></p>
 			<div class="entry_header">
-                <h1><a href="<?php the_permalink() ?>"><?php the_title(); ?></a> <?php edit_post_link('Edit', '<span class="editpost">', '</span>'); ?></h1>
+                <h1><a href="<?php the_permalink() ?>"><?php the_title(); ?></a> <!--<?php edit_post_link('Edit', '<span class="editpost">', '</span>'); ?>--></h1>
+                
                 <?php if ($post->comment_status != 'closed'):?>
                     <div class="comment-bubble"><?php comments_popup_link('<span class="nocomment">Leave a comment &#187;</span>', '1 Comment', '% Comments'); ?></div>
                 <?php endif;?>
@@ -12,43 +13,23 @@
             </div>
 			
 			<div class="entry">
+				<div class="plusone"><g:plusone size="medium" href="<?php the_permalink() ?>"></g:plusone></div>
 				<?php 
 				the_content();
 				wp_link_pages();
 				?>
-
+				
 				<?php the_tags( '<p class="tags">Tags: ', ', ', '</p>'); ?>
 
 				<p class="postmetadata alt">
-					<small>
-						This entry was posted
-						on <?php the_time(get_option('date_format')) ?> at <?php the_time() ?>. You can follow any responses to this entry through the <?php post_comments_feed_link('RSS 2.0'); ?> feed.
-
-						<?php if (('open' == $post-> comment_status) && ('open' == $post->ping_status)) {
-							// Both Comments and Pings are open ?>
-							You can <a href="#respond" rel="nofollow">leave a response</a>, or <a href="<?php trackback_url(); ?>" rel="trackback">trackback</a> from your own site.
-
-						<?php } elseif (!('open' == $post-> comment_status) && ('open' == $post->ping_status)) {
-							// Only Pings are Open ?>
-							Responses are currently closed, but you can <a href="<?php trackback_url(); ?> " rel="trackback">trackback</a> from your own site.
-
-						<?php } elseif (('open' == $post-> comment_status) && !('open' == $post->ping_status)) {
-							// Comments are open, Pings are not ?>
-							You can skip to the end and leave a response. Pinging is currently not allowed.
-
-						<?php } elseif (!('open' == $post-> comment_status) && !('open' == $post->ping_status)) {
-							// Neither Comments, nor Pings are open ?>
-							Both comments and pings are currently closed.
-
-						<?php }; ?>
-
-					</small>
+						声明: 本文遵循<a href="http://creativecommons.org/licenses/by-nc-sa/3.0/" target="_blank" rel="nofollow">BY-NC-SA 3.0</a>协议.转载时请注明出处：<a href="<?php the_permalink() ?>" title="<?php the_title(); ?>"><?php the_title(); ?></a>。
 				</p>
 
-			<p class="postmetacat"><?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> <?php _e('by')?> <span class="usr-meta"><?php the_author() ?></span> <span class="comment-icon"><?php comments_popup_link('No Comments Yet', '1 Comment', '% Comments')?></span><?php if (isset($options['tags'])) : ?><span class="tags"><?php the_tags('', ', ', ''); ?></span><?php endif; ?></p>
+			<p class="postmetacat" style="text-indent:0em"><?php _e('Posted in')?> <span class="categories"><?php the_category(' ') ?></span> <?php _e('by')?> <span class="usr-meta"><?php the_author() ?></span> | <span class="comment-icon"><?php comments_popup_link('No Comments Yet', '1 Comment', '% Comments')?></span> | <span class="views"><?php if(function_exists('the_views')) { the_views(); } ?></span> <?php if (isset($options['tags'])) : ?><span class="tags"><?php the_tags('', ', ', ''); ?></span><?php endif; ?></p>
+			<!--<script type="text/javascript" src="http://china-addthis.googlecode.com/svn/trunk/addthis.js" charset="UTF-8"></script><span class="addthis_org_cn" style="display:none;"><a href="http://addthis.org.cn/share/" i="0|1|31|22|23|28|49|21|30|47|34|71|72|73|74" side="left" title="收藏&amp;分享"><img src="<?php bloginfo('template_url'); ?>/images/as_t.png" alt="收藏&amp;分享" align="absmiddle" /></a></span>-->
 			</div>
 		</div>
-
+  <?php if(function_exists('wp_related_posts')) { wp_related_posts(); } ?>
 	<?php comments_template(); ?>
 
 	<?php endwhile; else: ?>

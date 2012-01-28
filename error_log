@@ -1,0 +1,8 @@
+[23-Aug-2010 15:06:22] PHP Fatal error:  Call to undefined function get_header() in /home/logicmdn/public_html/wp-content/themes/intrepidity/index.php on line 1
+[17-Dec-2010 20:35:33] PHP Fatal error:  Call to undefined function  get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1
+[12-Jan-2011 10:23:11] PHP Fatal error:  Call to undefined function  get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1
+[07-Mar-2011 10:00:47] PHP Fatal error:  Call to undefined function  get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1
+[03-Apr-2011 17:19:02] PHP Fatal error:  Call to undefined function  get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1
+[04-Nov-2011 13:16:08] PHP Fatal error:  Call to undefined function get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1
+[04-Nov-2011 15:17:33] PHP Fatal error:  Call to undefined function get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1
+[06-Nov-2011 21:48:49] PHP Fatal error:  Call to undefined function get_header() in /home/logicmd1/public_html/wp-content/themes/intrepidity/index.php on line 1

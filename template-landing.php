@@ -22,12 +22,11 @@ foreach($skin_folders as $key=>$value) {
 <head>
 <meta http-equiv="Content-Type" content="<?php bloginfo('html_type'); ?>; charset=<?php bloginfo('charset'); ?>" />
 <title>
-	<?php echo ($title = wp_title('&#8211;', false, 'right')) ? $title : ''; ?><?php echo ($description = get_bloginfo('description')) ? $description : bloginfo('name'); ?>
+	<?php wp_title(''); echo(" - 瑶池西望·紫气东来"); ?>
 </title>
 
-<meta name="author" content="<?php bloginfo('name'); ?>" />
+<meta name="author" content="logicmd" />
 <link rel="shortcut icon" href="<?php bloginfo('template_directory'); ?>/images/favicon.ico" type="image/x-icon" />
-<?php wp_enqueue_script('jquery'); ?>
 <?php if (is_singular()) wp_enqueue_script('comment-reply'); ?>
 <?php wp_head(); ?>
 
@@ -35,7 +34,8 @@ foreach($skin_folders as $key=>$value) {
 <?php if(isset($skin_dir)):?>
 <link href="<?php bloginfo('template_url'); ?>/images/<?php echo $skin_dir?>/style.css" type="text/css" rel="stylesheet" />
 <?php endif;?>
-<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/functions.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_directory');?>/js/jquery.lazyload.js"></script>
+<script type="text/javascript" src="<?php bloginfo('template_url'); ?>/js/functions.js?ver=20101104"></script>
 </head>
 
 <body <?php echo ($body_css) ? 'style="'.$body_css. '"' : ''?> class="landingpage">
@@ -100,7 +100,7 @@ foreach($skin_folders as $key=>$value) {
 				printCopyrightYears(startCopyrightYear)
 				/* ]]> */
 				</script>
-                <?php echo bloginfo('site_name')?></span><span id="footer-tag"> | &nbsp; <a href="http://www.topblogformula.com/wordpress-business-themes/intrepidity" target="_blank">intrepidity</a> Theme <?php _e('by')?> <a href="http://www.topblogformula.com/" target="_blank">Top Blog Formula</a> on <a href="http://www.wordpress.org" target="_blank">WordPress</a></span> | &nbsp; 
+                <?php echo bloginfo('site_name')?></span><span id="footer-tag"> | &nbsp; Intrepidity Theme modified<?php _e('by')?> @logicmd on WordPress</span> | &nbsp; 
                 <?php if(is_user_logged_in()):?>
                     <a href="<?php echo wp_logout_url(get_permalink()); ?>" title="<?php echo _e('Log Out') ?>"><?php echo _e('Log Out'); ?></a>
                 <?php else:?>
